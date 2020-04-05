@@ -88,11 +88,6 @@ class PluginCcavenue extends GatewayPlugin
                                 "description"   =>lang("No description"),
                                 "value"         =>"0"
                                 ),
-            lang("30 Day Billing") => array (
-                                "type"          =>"hidden",
-                                "description"   =>lang("Select YES if you want ClientExec to treat monthly billing by 30 day intervals.  If you select NO then the same day will be used to determine intervals."),
-                                "value"         =>"0"
-                                ),
             lang("Check CVV2") => array (
                                 "type"          =>"hidden",
                                 "description"   =>lang("Select YES if you want to accept CVV2 for this plugin."),
