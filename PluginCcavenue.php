@@ -9,7 +9,8 @@ require_once 'modules/admin/models/GatewayPlugin.php';
 */
 class PluginCcavenue extends GatewayPlugin
 {
-    function getVariables() {
+    function getVariables()
+    {
         /* Specification
         itemkey     - used to identify variable in your other functions
         type          - text,textarea,yesno,password,hidden ( hiddens are not visable to the user )
@@ -65,7 +66,7 @@ class PluginCcavenue extends GatewayPlugin
                                 ),
             lang("Invoice After Signup") => array (
                                 "type"          =>"yesno",
-                                "description"   =>lang("Select YES if you want an invoice sent to the customer after signup is complete."),
+                                "description"   =>lang("Select YES if you want an invoice sent to the client after signup is complete."),
                                 "value"         =>"1"
                                 ),
             lang("Signup Name") => array (
@@ -75,7 +76,7 @@ class PluginCcavenue extends GatewayPlugin
                                 ),
             lang("Dummy Plugin") => array (
                                 "type"          =>"hidden",
-                                "description"   =>lang("1 = Only used to specify a billing type for a customer. 0 = full fledged plugin requiring complete functions"),
+                                "description"   =>lang("1 = Only used to specify a billing type for a client. 0 = full fledged plugin requiring complete functions"),
                                 "value"         =>"0"
                                 ),
             lang("Accept CC Number") => array (
@@ -98,7 +99,8 @@ class PluginCcavenue extends GatewayPlugin
     }
 
     function credit($params)
-    {}
+    {
+    }
 
     /*****************************************************************/
     // function plugin_ccavenue_singlepayment($params) - required function
@@ -115,12 +117,12 @@ class PluginCcavenue extends GatewayPlugin
         //Need to check to see if user is coming from signup
         if ($params['isSignup']==1) {
             // Actually handle the signup URL setting
-            if($this->settings->get('Signup Completion URL') != '') {
+            if ($this->settings->get('Signup Completion URL') != '') {
                 $returnURL_Cancel = $this->settings->get('Signup Completion URL');
-            }else{
+            } else {
                 $returnURL_Cancel = $params["clientExecURL"]."/order.php?step=3";
             }
-        }else {
+        } else {
             $returnURL_Cancel = $params["invoiceviewURLCancel"];
         }
 
@@ -165,9 +167,9 @@ class PluginCcavenue extends GatewayPlugin
 
         $encrypted_data = encrypt($merchant_data, $WorkingKey); // Method for encrypting the data.
 
-        if ( $params['plugin_ccavenue_Test Mode'] == '1' ) {
+        if ($params['plugin_ccavenue_Test Mode'] == '1') {
             $ccavenuePost = 'test';
-        }else{
+        } else {
             $ccavenuePost = 'secure';
         }
 
@@ -188,4 +190,3 @@ class PluginCcavenue extends GatewayPlugin
         exit;
     }
 }
-?>
