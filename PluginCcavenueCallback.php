@@ -7,6 +7,11 @@ class PluginCcavenueCallback extends PluginCallback
     
     function processCallback()
     {
+        // Execute PluginCallback::processCallback() first
+        if (!parent::processCallback()) {
+            return;
+        }
+
         include("plugins/gateways/ccavenue/Crypto.php");
         $WorkingKey = $this->settings->get('plugin_ccavenue_Encryption Key');
         $encResponse = $_POST["encResp"];   //This is the response sent by the CCAvenue Server
